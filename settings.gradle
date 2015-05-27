@@ -1,0 +1,3 @@
+rootProject.name = 'jenniferTest'
+include 'test-admin'
+

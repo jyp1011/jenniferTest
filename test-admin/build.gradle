@@ -1,14 +1,21 @@
-group 'com.daumkakao.jennifer'
-version '1.0-SNAPSHOT'
+//group 'com.daumkakao.jennifer'
 
-apply plugin: 'java'
+subprojects{
+    apply plugin: "war"
+    apply plugin: "jetty"
 
-sourceCompatibility = 1.5
+    dependencies {
+//        compile project(":brunch-core")
+        providedCompile "javax.servlet:javax.servlet-api:${servletVersion}"
 
-repositories {
-    mavenCentral()
-}
+        compile "org.springframework:spring-context-support:${springVersion}"
+        compile "org.springframework:spring-webmvc:${springVersion}"
+        compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+        compile "org.apache.velocity:velocity:${velocityVersion}"
+        compile "org.apache.velocity:velocity-tools:${velocityToolsVersion}"
+    }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    war{
+        archiveName = "${baseName}.${extension}"
+    }
 }
